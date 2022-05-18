@@ -1,14 +1,14 @@
 const AWS = require("aws-sdk");
 const express = require("express");
 const serverless = require("serverless-http");
-
+const { env } = require('./config/env');
 const app = express();
 
-const USERS_TABLE = process.env.USERS_TABLE;
+const USERS_TABLE = env.USERS_TABLE;
 // const dynamoDbClient = new AWS.DynamoDB.DocumentClient();
 
 const dynamoDbClientParams = {};
-if (process.env.IS_OFFLINE) {
+if (env.IS_OFFLINE) {
   dynamoDbClientParams.region = 'localhost'
   dynamoDbClientParams.endpoint = 'http://localhost:8000'
 }
